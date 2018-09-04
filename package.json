@@ -7,7 +7,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit",
-    "start": "npm run build && node server.js"
+    "start": "node server.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -38,10 +38,6 @@
     "pre-commit": "lint-staged"
   },
   "lint-staged": {
-    "*.js": [
-      "vue-cli-service lint",
-      "git add"
-    ],
     "*.vue": [
       "vue-cli-service lint",
       "git add"
