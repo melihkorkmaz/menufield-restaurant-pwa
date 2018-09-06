@@ -51,7 +51,7 @@
               </v-list-tile-content>
             </v-list-tile>
           </v-list-group>
-          <v-list-tile v-else :key="item.text" >
+          <v-list-tile v-else :key="item.text" @click="onClick(item.url)">
             <v-list-tile-action>
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-tile-action>
@@ -88,10 +88,15 @@ export default {
     dialog: false,
     drawer: null,
     items: [
-      { icon: "dashboard", text: "Dashboard" },
-      { icon: "library_books", text: "Orders" }
+      { icon: "dashboard", text: "Dashboard", url: "/" },
+      { icon: "library_books", text: "Orders", url: "/orders" }
     ]
   }),
+  methods: {
+    onClick(url) {
+      this.$router.push(url);
+    }
+  },
   props: {
     source: String
   }
