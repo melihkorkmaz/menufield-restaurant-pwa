@@ -1,10 +1,21 @@
 const state = {
-  email: "melih@tdsmaker.com"
+  email: "",
+  restaurantId: ""
 };
-const mutations = {};
-const actions = {};
+const mutations = {
+  initUserStore(state, { email, restaurantId }) {
+    state.email = email;
+    state.restaurantId = restaurantId;
+  }
+};
+const actions = {
+  initUserData({ commit }, payload) {
+    commit("initUserStore", payload);
+  }
+};
 
 export default {
+  namespaced: true,
   state,
   mutations,
   actions

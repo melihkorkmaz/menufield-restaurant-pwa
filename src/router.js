@@ -7,7 +7,7 @@ import OrderDetails from "./views/OrderDetails.vue";
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: "history",
   routes: [
     {
@@ -33,3 +33,20 @@ export default new Router({
     }
   ]
 });
+
+router.beforeEach((to, from, next) => {
+  const email = localStorage.getItem("mf-email");
+  const restaurantId = localStorage.getItem("mf-resId");
+  const auth = localStorage.getItem("mf-auth");
+  if (to.meta["layout"] !== "nonauthorized") {
+    if (!email || !restaurantId || !auth) {
+      next({
+        path: "/signin"
+      });
+    }
+  }
+
+  next();
+});
+
+export default router;

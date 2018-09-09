@@ -17,14 +17,6 @@ var fbConfig = {
   messagingSenderId: "531651691827"
 };
 firebase.initializeApp(fbConfig);
-var connectedRef = firebase.database().ref(".info/connected");
-connectedRef.on("value", function(snap) {
-  if (snap.val() === true) {
-    console.log("CONNECTEDD");
-  } else {
-    console.log("NOT CONNECTED");
-  }
-});
 
 Vue.config.productionTip = false;
 new Vue({

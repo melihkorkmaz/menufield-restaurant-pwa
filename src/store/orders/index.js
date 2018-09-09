@@ -17,13 +17,21 @@ const mutations = {
   },
   setSelectedOrder(state, order) {
     state.selectedOrder = order;
+  },
+  addNewOrder(state, newOrder) {
+    state.allOrders = [newOrder, ...state.allOrders];
   }
 };
 const actions = {
   fetchAllOrders(context) {
     return new Promise(resolve => {
       get("/orders").then(x => {
-        const orders = x.sort((a, b) => a.createDate - b.createDate);
+        const orders = x
+          .map(orderItem => {
+            orderItem.createDate = new Date(orderItem.createDate);
+            return orderItem;
+          })
+          .sort((a, b) => b.createDate - a.createDate);
         context.commit("setAllOrders", orders);
         resolve();
       });
@@ -35,6 +43,9 @@ const actions = {
   selectOrder({ commit }, order) {
     commit("toggleState", { order, isNew: false });
     commit("setSelectedOrder", order);
+  },
+  addOrder({ commit }, newOrder) {
+    commit("addNewOrder", newOrder);
   }
 };
 

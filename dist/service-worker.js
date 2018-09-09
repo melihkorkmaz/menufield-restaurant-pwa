@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.4.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.bdf20b7202cd1d76592a7781ac058bfc.js"
+  "/precache-manifest.1deb43242455f56a48c2d326453d3eac.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "menufield-restaurant-pwa"});

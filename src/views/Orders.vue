@@ -32,6 +32,8 @@
             ></v-divider>
           </template>
         </v-list>
+    <order-details-dialog v-bind:dialog="dialog" v-bind:on-close="closeDialog" />
+
 </v-layout>
         
 </template>
@@ -40,21 +42,27 @@
 // import Vue from "vue";
 import { mapState, mapActions } from "vuex";
 import moment from "moment";
-import crypto from "crypto";
-import * as firebase from "firebase";
+import { listenNewOrders } from "../utils/firebase.helper";
+import OrderDetailsDialog from "../components/OrderDetailsDialog.vue";
 
 export default {
   data() {
     return {
-      isLoading: false
+      isLoading: true,
+      dialog: false
     };
+  },
+  components: {
+    "order-details-dialog": OrderDetailsDialog
   },
   methods: {
     ...mapActions("orders", [
       "fetchAllOrders",
       "toggleOrderState",
-      "selectOrder"
+      "selectOrder",
+      "addOrder"
     ]),
+    ...mapActions("audio", ["initAudioPlay", "playAudio"]),
     orderDate(dateValue) {
       const orderDate = moment(dateValue);
       const today = moment();
@@ -63,38 +71,13 @@ export default {
         ? orderDate.format("MM/DD/YYYY hh:mm A")
         : orderDate.fromNow();
     },
-    initFirebase() {
-      const hash = crypto
-        .createHash("md5")
-        .update("melih@tdsmaker.com")
-        .digest("hex");
-
-      var rootRef = firebase
-        .database()
-        .ref("listeners_test/58b207f15138672ad0f3b84d/" + hash + "/orders");
-
-      // rootRef.on("child_added", function(snapshot) {
-      rootRef.on("value", snapshot => {
-        const data = snapshot.val();
-        let orders = [...this.allOrders];
-
-        if (Object.keys(data).length > 0) {
-          const audio = new Audio("/sounds/tone.mp3");
-          // audio.loop = true;
-          audio.play();
-        }
-
-        Object.values(data).forEach(order => {
-          let relatedOrder = orders.find(x => x._id === order._id);
-          if (relatedOrder && relatedOrder.isNew === undefined) {
-            this.toggleOrderState({ order: relatedOrder, isNew: true });
-          } else {
-            order.isNew = true;
-            orders = [order, ...orders];
-          }
-        });
-
-        // this.orders = [...orders];
+    initListeners() {
+      const listener = listenNewOrders();
+      this.initAudioPlay();
+      listener.on("new_order", newOrder => {
+        newOrder.isNew = true;
+        this.addOrder(newOrder);
+        // this.playAudio();
       });
     },
     getStyle(item) {
@@ -105,16 +88,19 @@ export default {
     },
     viewDetails(item) {
       this.selectOrder(item);
-      this.$router.push("/order-details");
+      this.dialog = true;
+    },
+    closeDialog() {
+      this.dialog = false;
     }
   },
   mounted() {
     if (!this.fetched) {
       this.fetchAllOrders().then(() => {
-        this.initFirebase();
+        this.initListeners();
       });
     } else {
-      this.initFirebase();
+      this.initListeners();
     }
   },
   computed: {
