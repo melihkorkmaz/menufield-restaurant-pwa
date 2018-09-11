@@ -1,14 +1,14 @@
 {
-  "name": "menufield-restaurant-pwa",
-  "short_name": "menufield-restaurant-pwa",
+  "name": "Menufield",
+  "short_name": "menufield-restaurant",
   "icons": [
     {
-      "src": "/img/icons/android-chrome-192x192.png",
-      "sizes": "192x192",
+      "src": "/img/icons/app-icon-256.png",
+      "sizes": "256x256",
       "type": "image/png"
     },
     {
-      "src": "/img/icons/android-chrome-512x512.png",
+      "src": "/img/icons/app-icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
     }

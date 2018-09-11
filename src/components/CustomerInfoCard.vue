@@ -1,5 +1,5 @@
 <template>
-    <v-card class="ma-2">
+    <v-card class="ma-2 customer-info">
             <v-form class="pa-3">
                 <v-text-field v-for="item in customerInfo"
                 v-bind:key="item.label"
@@ -49,8 +49,8 @@ export default {
 </script>
 
 <style>
-.v-text-field > .v-input__control > .v-input__slot:after,
-.v-text-field > .v-input__control > .v-input__slot:before {
+.customer-info .v-text-field > .v-input__control > .v-input__slot:after,
+.customer-info .v-text-field > .v-input__control > .v-input__slot:before {
   display: none;
 }
 </style>
