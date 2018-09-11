@@ -1,10 +1,10 @@
 {
   "name": "Menufield",
-  "short_name": "menufield-restaurant",
+  "short_name": "Menufield",
   "icons": [
     {
-      "src": "/img/icons/app-icon-256.png",
-      "sizes": "256x256",
+      "src": "/img/icons/app-icon-192.png",
+      "sizes": "192x192",
       "type": "image/png"
     },
     {
