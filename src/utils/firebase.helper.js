@@ -26,9 +26,17 @@ const rootListenerRef = compose(
   rootListenerUrl
 );
 
-const listenNewOrders = (
-  restaurantId = "58b207f15138672ad0f3b84d",
-  email = "melih@tdsmaker.com"
-) => new FirebaseDataListener(rootListenerRef(restaurantId, email));
+const listenNewOrders = (restaurantId, email) =>
+  new FirebaseDataListener(rootListenerRef(restaurantId, email));
 
-export { listenNewOrders };
+const removeData = (restaurantId, email) => id => {
+  let routeUrl = rootListenerUrl(restaurantId, email);
+  routeUrl += `/${id}`;
+  firebase
+    .database()
+    .ref(routeUrl)
+    .remove()
+    .then(() => {});
+};
+
+export { listenNewOrders, removeData };

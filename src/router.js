@@ -3,7 +3,6 @@ import Router from "vue-router";
 import Home from "./views/Home.vue";
 import SignIn from "./views/SignIn.vue";
 import Orders from "./views/Orders.vue";
-import OrderDetails from "./views/OrderDetails.vue";
 
 Vue.use(Router);
 
@@ -19,11 +18,6 @@ const router = new Router({
       path: "/orders",
       name: "orders",
       component: Orders
-    },
-    {
-      path: "/order-details",
-      name: "orderDetails",
-      component: OrderDetails
     },
     {
       path: "/signin",

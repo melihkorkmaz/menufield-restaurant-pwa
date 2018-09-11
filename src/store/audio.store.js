@@ -6,7 +6,7 @@ const state = {
 const mutations = {
   initPlayer(state) {
     let newPlayer = new Audio(state.audioFile);
-    // newPlayer.loop = true;
+    newPlayer.loop = true;
     state.player = newPlayer;
   },
   toggleState(state, status) {
@@ -14,7 +14,8 @@ const mutations = {
     if (status) {
       state.player.play();
     } else {
-      state.player.stop();
+      state.player.pause();
+      state.player.currentTime = 0;
     }
   }
 };

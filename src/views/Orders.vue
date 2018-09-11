@@ -8,7 +8,7 @@
       <v-list v-if="allOrders.length > 0" two-line style="width:100%">
           <template v-for="(item, index) in allOrders">
             <v-list-tile
-              :key="item.orderNumber"
+              :key="item._id"
               avatar
               ripple
               @click="viewDetails(item)"
@@ -42,7 +42,7 @@
 // import Vue from "vue";
 import { mapState, mapActions } from "vuex";
 import moment from "moment";
-import { listenNewOrders } from "../utils/firebase.helper";
+import { listenNewOrders, removeData } from "../utils/firebase.helper";
 import OrderDetailsDialog from "../components/OrderDetailsDialog.vue";
 
 export default {
@@ -62,7 +62,7 @@ export default {
       "selectOrder",
       "addOrder"
     ]),
-    ...mapActions("audio", ["initAudioPlay", "playAudio"]),
+    ...mapActions("audio", ["initAudioPlay", "playAudio", "stopAudio"]),
     orderDate(dateValue) {
       const orderDate = moment(dateValue);
       const today = moment();
@@ -72,12 +72,12 @@ export default {
         : orderDate.fromNow();
     },
     initListeners() {
-      const listener = listenNewOrders();
+      const listener = listenNewOrders(this.restaurantId, this.email);
       this.initAudioPlay();
       listener.on("new_order", newOrder => {
         newOrder.isNew = true;
         this.addOrder(newOrder);
-        // this.playAudio();
+        this.playAudio();
       });
     },
     getStyle(item) {
@@ -88,7 +88,9 @@ export default {
     },
     viewDetails(item) {
       this.selectOrder(item);
+      this.stopAudio();
       this.dialog = true;
+      removeData(this.restaurantId, this.email)(item._id);
     },
     closeDialog() {
       this.dialog = false;
@@ -104,7 +106,8 @@ export default {
     }
   },
   computed: {
-    ...mapState("orders", ["fetched", "allOrders"])
+    ...mapState("orders", ["fetched", "allOrders"]),
+    ...mapState("user", ["email", "restaurantId"])
   }
 };
 </script>

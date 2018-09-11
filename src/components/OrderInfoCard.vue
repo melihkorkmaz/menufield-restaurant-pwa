@@ -19,7 +19,6 @@ export default {
   computed: {
     customerInfo() {
       const order = this.order;
-      console.log("order", order);
       return [
         { label: "Type", value: checkoutType(order.carryOrDelivery) },
         { label: "Order Time", value: orderTime(order) },

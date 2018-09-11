@@ -9,12 +9,12 @@ import "./registerServiceWorker";
 Vue.use(Vuetify);
 
 var fbConfig = {
-  apiKey: "AIzaSyAlstqbGZjsDSy__6sM2ZUV3lGe8UEtg58",
+  apiKey: process.env.FIREBASE_API_KEY,
   authDomain: "menu-field.firebaseapp.com",
   databaseURL: "https://menu-field.firebaseio.com",
   projectId: "menu-field",
   storageBucket: "menu-field.appspot.com",
-  messagingSenderId: "531651691827"
+  messagingSenderId: process.env.MESSAGE_SENDER_IP
 };
 firebase.initializeApp(fbConfig);
 

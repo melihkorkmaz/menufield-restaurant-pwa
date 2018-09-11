@@ -61,12 +61,10 @@ export default {
   },
   mounted() {
     this.orderGroup = orderItemsByGroup(this.order);
-    console.log("this.orderGroup", this.orderGroup);
   },
   watch: {
     order() {
       this.orderGroup = orderItemsByGroup(this.order);
-      console.log("this.orderGroup", this.orderGroup);
     }
   }
 };
