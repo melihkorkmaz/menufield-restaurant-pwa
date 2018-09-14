@@ -12,7 +12,7 @@ const mutations = {
   toggleState(state, status) {
     state.isPlaying = status;
     if (status) {
-      // state.player.play();
+      state.player.play();
     } else {
       state.player.pause();
       state.player.currentTime = 0;

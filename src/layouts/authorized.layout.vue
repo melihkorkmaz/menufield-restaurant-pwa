@@ -87,10 +87,7 @@ export default {
   data: () => ({
     dialog: false,
     drawer: null,
-    items: [
-      { icon: "dashboard", text: "Dashboard", url: "/" },
-      { icon: "library_books", text: "Orders", url: "/orders" }
-    ]
+    items: [{ icon: "library_books", text: "Orders", url: "/" }]
   }),
   methods: {
     onClick(url) {

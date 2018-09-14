@@ -6,16 +6,18 @@
           <v-toolbar dark color="blue-grey darken-3">
             <v-toolbar-title>Menufield</v-toolbar-title>
           </v-toolbar>
+          <v-form v-on:submit.prevent="signIn">
           <v-card-text>
-            <v-form>
+            
               <v-text-field prepend-icon="email" name="email" label="E-Mail" type="email" v-model="email"></v-text-field>
               <v-text-field id="password" prepend-icon="lock" name="password" label="Password" type="password" v-model="password"></v-text-field>
-            </v-form>
+           
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="primary" v-on:click="signIn" v-bind:disabled="btnText !== 'Sign In'">{{btnText}}</v-btn>
+            <v-btn color="primary" type="submit" v-bind:disabled="btnText !== 'Sign In'">{{btnText}}</v-btn>
           </v-card-actions>
+           </v-form>
         </v-card>
       </v-flex>
     </v-layout>

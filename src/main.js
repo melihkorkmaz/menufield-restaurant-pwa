@@ -3,7 +3,7 @@ import Vuetify from "vuetify";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-import * as firebase from "firebase";
+import * as firebase from "firebase/app";
 import "./registerServiceWorker";
 
 Vue.use(Vuetify);
@@ -24,10 +24,3 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount("#app");
-
-console.log("eventlistener", window);
-window.addEventListener("beforeinstallprompt", e => {
-  console.log("HERERERE");
-  // Prevent Chrome 67 and earlier from automatically showing the prompt
-  e.preventDefault();
-});

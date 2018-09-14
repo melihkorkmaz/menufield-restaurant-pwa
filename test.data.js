@@ -229,7 +229,7 @@ firebase.initializeApp(fbConfig);
 var rootRef = firebase
   .database()
   .ref(
-    "/listeners_test/58b207f15138672ad0f3b84d/e8561e55cd5297e53f94f4dc07321e3c/orders/33331"
+    "/listeners/58b207f15138672ad0f3b84d/e8561e55cd5297e53f94f4dc07321e3c/orders/33331"
   );
 rootRef.set(sampleData);
 

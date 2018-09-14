@@ -2,6 +2,7 @@ import * as firebase from "firebase";
 import EventEmitter from "events";
 import { compose } from "ramda";
 import { md5Hasher } from "./utils.helper";
+const ROOT_LISTENER_NAME = "listeners";
 
 class FirebaseDataListener extends EventEmitter {
   constructor(listener) {
@@ -17,7 +18,7 @@ class FirebaseDataListener extends EventEmitter {
 }
 
 const rootListenerUrl = (restaurantId, email) =>
-  `listeners_test/${restaurantId}/${md5Hasher(email)}/orders`;
+  `${ROOT_LISTENER_NAME}/${restaurantId}/${md5Hasher(email)}/orders`;
 
 const firebaseRef = url => firebase.database().ref(url);
 
@@ -39,4 +40,22 @@ const removeData = (restaurantId, email) => id => {
     .then(() => {});
 };
 
-export { listenNewOrders, removeData };
+const initRoute = (restaurantId, email) => {
+  const routeUrl = `${ROOT_LISTENER_NAME}/${restaurantId}/${md5Hasher(email)}`;
+  const ref = firebase.database().ref(routeUrl);
+  ref.set({
+    active: true,
+    orders: []
+  });
+};
+
+const destroyRoute = (restaurantId, email) => {
+  const routeUrl = rootListenerUrl(restaurantId, email);
+  firebase
+    .database()
+    .ref(routeUrl)
+    .remove()
+    .then(() => {});
+};
+
+export { listenNewOrders, removeData, initRoute, destroyRoute };

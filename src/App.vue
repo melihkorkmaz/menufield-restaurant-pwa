@@ -11,6 +11,7 @@ import { mapActions } from "vuex";
 import AuthorizedLayout from "./layouts/authorized.layout";
 import NonAuthorizedLayout from "./layouts/nonauthorized.layout";
 import Loading from "./views/Loading.vue";
+import { initRoute } from "./utils/firebase.helper";
 
 const default_layout = "authorized";
 
@@ -43,6 +44,7 @@ export default {
       if (auth && restaurantId && email) {
         //Check authorized ping
         this.initUserData({ email, restaurantId });
+        initRoute(restaurantId, email);
       }
 
       this.isLoaded = true;

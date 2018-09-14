@@ -8,7 +8,7 @@
         <v-toolbar-title v-if="this.selectedOrder.user">{{this.selectedOrder.user.name}}</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-toolbar-items>
-          <v-btn dark flat @click.native="dialog = false">Print</v-btn>
+          <!-- <v-btn dark flat @click.native="dialog = false">Print</v-btn> -->
         </v-toolbar-items>
       </v-toolbar>
       <v-layout row wrap>
