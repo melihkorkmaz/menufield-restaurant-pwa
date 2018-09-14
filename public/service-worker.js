@@ -10,14 +10,14 @@
  * and re-run your build process.
  * See https://goo.gl/2aRDsh
  */
-
-importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.4.1/workbox-sw.js");
-
+//MELİH
 importScripts(
-  "/precache-manifest.c4f1904b36720755b795474ab027532f.js"
+  "https://storage.googleapis.com/workbox-cdn/releases/3.4.1/workbox-sw.js"
 );
 
-workbox.core.setCacheNameDetails({prefix: "menufield-restaurant-pwa"});
+importScripts("/precache-manifest.97e1dea54b75f50022198651220b29a8.js");
+
+workbox.core.setCacheNameDetails({ prefix: "menufield-restaurant-pwa" });
 
 /**
  * The workboxSW.precacheAndRoute() method efficiently caches and responds to

@@ -4,6 +4,10 @@ self.__precacheManifest = [
     "url": "/sounds/tone.mp3"
   },
   {
+    "revision": "03c78194154185d676111b4e7b19b67e",
+    "url": "/service-worker.js"
+  },
+  {
     "revision": "b6216d61c03e6ce0c9aea6ca7808f7ca",
     "url": "/robots.txt"
   },
@@ -12,15 +16,15 @@ self.__precacheManifest = [
     "url": "/js/chunk-vendors.a9377b2c.js"
   },
   {
-    "revision": "d1832fb9a63be23a5abf",
-    "url": "/js/app.4ab795e2.js"
+    "revision": "2aa4b69bd7a10281e621",
+    "url": "/js/app.ab334e84.js"
   },
   {
-    "revision": "b2213ab563f85792b5132325cd93e86c",
+    "revision": "60bd751dd5586804b18c4c71c1ad5b2a",
     "url": "/index.html"
   },
   {
-    "revision": "d1832fb9a63be23a5abf",
+    "revision": "2aa4b69bd7a10281e621",
     "url": "/css/app.15d12de5.css"
   }
 ];

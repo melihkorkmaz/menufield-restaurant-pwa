@@ -25,13 +25,9 @@ new Vue({
   render: h => h(App)
 }).$mount("#app");
 
-let deferredPrompt;
-
 console.log("eventlistener", window);
 window.addEventListener("beforeinstallprompt", e => {
   console.log("HERERERE");
   // Prevent Chrome 67 and earlier from automatically showing the prompt
   e.preventDefault();
-  // Stash the event so it can be triggered later.
-  deferredPrompt = e;
 });
